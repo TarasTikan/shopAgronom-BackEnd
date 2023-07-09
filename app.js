@@ -1,25 +1,45 @@
-const express = require('express')
-const logger = require('morgan')
-const cors = require('cors')
+const express = require("express");
+const moment = require("moment");
+const fs = require("fs/promises");
+const cors = require("cors");
+const books = require("./books");
 
-const contactsRouter = require('./routes/api/contacts')
+const app = express();
 
-const app = express()
+// const corsMiddleware = cors();
+// app.use(corsMiddleware);
+app.use(cors());
+/*
+app.use( async(req, res, next)=> {
+    const {method, url} = req;
+    const date = moment().format("DD-MM-YYYY_hh:mm:ss");
+    await fs.appendFile("./public/server.log", `\n${method} ${url} ${date}`);
+    next();
+})
+*/
+/*
+app.use((req, res, next)=> {
+    console.log("First middleware");
+    next();
+})
 
-const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
+app.use((req, res, next)=> {
+    console.log("Second middleware");
+    next();
+})
+*/
+app.get("/products", async (req, res) => {
+  res.json([]);
+});
 
-app.use(logger(formatsLogger))
-app.use(cors())
-app.use(express.json())
-
-app.use('/api/contacts', contactsRouter)
+app.get("/books", async (req, res) => {
+  res.json(books);
+});
 
 app.use((req, res) => {
-  res.status(404).json({ message: 'Not found' })
-})
+  res.status(404).json({
+    message: "Not found",
+  });
+});
 
-app.use((err, req, res, next) => {
-  res.status(500).json({ message: err.message })
-})
-
-module.exports = app
+app.listen(3000);
