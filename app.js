@@ -2,7 +2,7 @@ const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
 
-const plantsProtectRouter = require('./routes/api/plantsProtect')
+const plantsProtectRouter = require('./routes/api/plantsProtect/herbicides')
 const app = express()
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
@@ -11,7 +11,7 @@ app.use(logger(formatsLogger))
 app.use(cors())
 app.use(express.json())
 
-app.use("/api/plantsProtect", plantsProtectRouter);
+app.use("/api/plantsProtect/herbicides", plantsProtectRouter);
 
 
 app.use((req, res) => {

@@ -14,26 +14,38 @@ const listProducts = async () => {
 };
 
 const getProductById = async (productId) => {
-  const list = await fs.readFile(filePath);
-  const parsed = JSON.parse(list);
-  return parsed.find((item) => item.id === productId);
+ const list = await listProducts();
+  return list.find((item) => item.id === productId);
 };
 
-const removeProduct = async (contactId) => {};
+const removeProduct = async (productId) => {
+ const list = await listProducts();
+   const removeProduct = list.filter((item) => item.id !== productId);
+   await products(removeProduct)
+   return {message: 'Product removed successfully'}
+};
 
 const addProduct = async (body) => {
-  const list = await fs.readFile(filePath);
-  const parsed = JSON.parse(list);
+ const list = await listProducts();
   const newProduct = {
     id: nanoid(),
   ...body
   }
-  parsed.push(newProduct);
- await products(parsed);
+  list.push(newProduct);
+ await products(list);
   return newProduct;
 };
 
-const updateProduct = async (contactId, body) => {};
+const updateProduct = async (productId, body) => {
+ const list = await listProducts();
+       const indexProduct = list.findIndex((item) => item.id === productId);
+       if (indexProduct === -1) {
+         return null;
+       }
+   list[indexProduct] = { id: productId, ...body };
+    await products(list);
+    return list[indexProduct];
+};
 
 module.exports = {
   listProducts,
