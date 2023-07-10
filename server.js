@@ -1,8 +1,6 @@
 const app = require("./app");
 const mongoose = require("mongoose");
-const DB_HOST =
-  "mongodb+srv://Taras:nd1LNGczRYqdbMZq@cluster0.hqxfyrr.mongodb.net/shopProducts";
-
+const { DB_HOST } = require("./config");
   
 mongoose
   .connect(DB_HOST)
