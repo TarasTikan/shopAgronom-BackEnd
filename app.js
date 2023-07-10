@@ -1,9 +1,9 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
+require("dotenv").config();
 const plantsProtectRouter = require('./routes/api/plantsProtect/herbicides')
 const app = express()
-
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 
 app.use(logger(formatsLogger))
