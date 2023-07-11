@@ -1,8 +1,7 @@
 const { HttpError } = require('../../../helpers');
-const plantsProtectHerbicides = require('../../../models/plantsProtect')
-
+const Herbicides = require('../../../models/plantsProtectModels/herbicides')
 const getListProducts = async (req, res) =>{
-    const data = await plantsProtectHerbicides.listProducts();
+    const data = await Herbicides.find()
         if (!data) {
           throw HttpError(404, "Not found");
         }
