@@ -1,9 +1,8 @@
 const { HttpError } = require("../../../helpers");
-const plantsProtectHerbicides = require("../../../models/plantsProtect");
-const Herbicides = require("../../../models/plantsProtectModels/herbicides");
+const { Herbicides } = require("../../../models/plantsProtectModels");
 const getOneProducts = async (req, res) => {
     const { productId } = req.params;
-    const result = await plantsProtectHerbicides.getProductById(productId);
+    const result = await Herbicides.findById(productId);
     if (!result) {
       throw HttpError(404, "Not found");
     }

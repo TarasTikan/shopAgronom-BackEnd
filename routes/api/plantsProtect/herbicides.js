@@ -7,17 +7,17 @@ const {
   getListProducts,
   getOneProducts,
 } = require("../../../controllers/plantsProtect/herbicides");
-const { validateBody } = require("../../../middlewares");
+const { validateBody, isValidId } = require("../../../middlewares");
 const { addSchema } = require("../../../schemas/products");
 
 router.get("/", getListProducts);
 
-router.get("/:productId", getOneProducts);
+router.get("/:productId", isValidId, getOneProducts);
 
-router.delete("/:productId", removeProduct);
+router.delete("/:productId", isValidId, removeProduct);
 
 router.post("/", validateBody(addSchema), createProduct);
 
-router.put("/:productId", validateBody(addSchema), updateProduct);
+router.put("/:productId", isValidId, validateBody(addSchema), updateProduct);
 
 module.exports = router;
