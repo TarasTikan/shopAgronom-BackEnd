@@ -7,7 +7,10 @@ const {
   getListProducts,
   getOneProducts,
 } = require("../../../controllers/plantsProtect/rodenticides");
-const { validateBody, isValidId } = require("../../../middlewares");
+const {
+  validateBody,
+  isValidId,
+} = require("../../../middlewares");
 const { ProductJoiSchema } = require("../../../JoiSchemas");
 
 router.get("/", getListProducts);
@@ -19,7 +22,7 @@ router.delete("/:productId", isValidId, removeProduct);
 router.post("/", validateBody(ProductJoiSchema), createProduct);
 
 router.put(
-  "/:productId",
+  "/:productId", 
   isValidId,
   validateBody(ProductJoiSchema),
   updateProduct

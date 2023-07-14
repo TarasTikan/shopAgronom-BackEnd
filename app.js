@@ -3,6 +3,7 @@ const logger = require('morgan')
 const cors = require('cors');
 const { herbicidesRouter, fungicidesRouter, desiccantsRouter, adjuvantsRouter, insecticidesRouter, retardantsRouter, rodenticidesRouter, stainRemoversRouter } = require('./routes/api/plantsProtect');
 const authRouter = require('./routes/api/auth/auth')
+const basketProductsRouter = require('./routes/api/basketsProduct/basketProducts')
 require("dotenv").config();
 const app = express()
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
@@ -19,6 +20,8 @@ app.use("/api/plantsProtect/insecticides", insecticidesRouter);
 app.use("/api/plantsProtect/retardants", retardantsRouter);
 app.use("/api/plantsProtect/rodenticides", rodenticidesRouter);
 app.use("/api/plantsProtect/stainRemovers", stainRemoversRouter);
+
+app.use("/api/basket", basketProductsRouter)
 
 
 app.use("/api/auth", authRouter)

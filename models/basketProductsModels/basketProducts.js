@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../../helpers");
-const herbicidesSchema = new Schema(
+const basketProductsSchema = new Schema(
   {
     name: { type: String, required: true },
     price: { type: String, required: true },
@@ -15,12 +15,16 @@ const herbicidesSchema = new Schema(
     StoragePeriod: { type: String, required: true },
     Characteristics: { type: String, required: true },
     Recommendations: { type: String, required: true },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );
-herbicidesSchema.post("save", handleMongooseError);
+basketProductsSchema.post("save", handleMongooseError);
 
-const Herbicides = model("herbicide", herbicidesSchema);
+const BasketProducts = model("basketProduct", basketProductsSchema);
 
-module.exports = Herbicides;
-// треба сюда добавити joi схему
+module.exports = BasketProducts;
