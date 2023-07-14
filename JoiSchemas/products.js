@@ -1,5 +1,5 @@
 const Joi = require("joi");
-const addSchema = Joi.object({
+const ProductJoiSchema = Joi.object({
   name: Joi.string().required(),
   price: Joi.string().required(),
   description: Joi.string().required(),
@@ -15,4 +15,4 @@ const addSchema = Joi.object({
   Recommendations: Joi.string().required(),
 });
 
-module.exports = {addSchema}
+module.exports = { ProductJoiSchema };

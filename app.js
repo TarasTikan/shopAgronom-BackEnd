@@ -2,6 +2,7 @@ const express = require('express')
 const logger = require('morgan')
 const cors = require('cors');
 const { herbicidesRouter, fungicidesRouter, desiccantsRouter, adjuvantsRouter, insecticidesRouter, retardantsRouter, rodenticidesRouter, stainRemoversRouter } = require('./routes/api/plantsProtect');
+const authRouter = require('./routes/api/auth/auth')
 require("dotenv").config();
 const app = express()
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
@@ -20,6 +21,7 @@ app.use("/api/plantsProtect/rodenticides", rodenticidesRouter);
 app.use("/api/plantsProtect/stainRemovers", stainRemoversRouter);
 
 
+app.use("/api/auth", authRouter)
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' })
 })
