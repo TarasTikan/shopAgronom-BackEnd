@@ -21,7 +21,7 @@ app.use("/api/plantsProtect/retardants", retardantsRouter);
 app.use("/api/plantsProtect/rodenticides", rodenticidesRouter);
 app.use("/api/plantsProtect/stainRemovers", stainRemoversRouter);
 
-app.use("/api/basket", basketProductsRouter)
+app.use("/api/basketProducts", basketProductsRouter)
 
 
 app.use("/api/auth", authRouter)
