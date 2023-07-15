@@ -1,7 +1,9 @@
 const { HttpError } = require("../../../helpers");
 const { Rodenticides } = require("../../../models/plantsProtectModels");
 const getListProducts = async (req, res) => {
-  const data = await Rodenticides.find();
+  const { page = 1, limit = 15 } = req.query;
+  const skip = (page - 1) * limit;
+  const data = await Rodenticides.find().skip(skip).limit(limit);
   if (!data) {
     throw HttpError(404, "Not found");
   }

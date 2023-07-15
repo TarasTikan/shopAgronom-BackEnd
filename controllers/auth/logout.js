@@ -1,6 +1,9 @@
-const logout = (req,res) => {
-  req.headers.authorization = "";
-  res.status(204).json();
-}
+const User = require("../../models/authModels/user");
 
-module.exports = logout
+const logout = async (req, res) => {
+  const { _id } = req.user;
+  await User.findByIdAndUpdate(_id, { token: "" });
+  res.json({ message: "logout success" });
+};
+
+module.exports = logout;

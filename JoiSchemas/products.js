@@ -15,4 +15,4 @@ const ProductJoiSchema = Joi.object({
   Recommendations: Joi.string().required(),
 });
 
-module.exports = { ProductJoiSchema };
+module.exports = ProductJoiSchema 
