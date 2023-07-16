@@ -4,6 +4,8 @@ const emailRegext =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const registerJoiSchema = Joi.object({
   name: Joi.string().required(),
+  surname: Joi.string().required(),
+  phone: Joi.string().required(),
   email: Joi.string().pattern(emailRegext).required(),
   password: Joi.string().min(6).required(),
 });
