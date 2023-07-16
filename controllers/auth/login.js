@@ -1,8 +1,8 @@
 const { HttpError } = require("../../helpers");
 const User = require("../../models/authModels/user");
 const bcrypt = require("bcrypt");
-require("dotenv").config();
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const { SECRET_KEY } = process.env;
 const login = async (req, res) => {
   const { email, password } = req.body;
