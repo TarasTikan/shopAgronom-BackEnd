@@ -1,20 +1,23 @@
-const { HttpError } = require("../../helpers");
-const User = require("../../models/authModels/user");
 const bcrypt = require("bcrypt");
+const {
+  verifyUser,
+  createUser,
+  createToken,
+  updateUserById,
+} = require("../../services/userServices");
 const register = async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (user) {
-    throw HttpError(409, "Email already in use");
-  }
-
+  await verifyUser({ email });
   const hashPassword = await bcrypt.hash(password, 10);
-  const newUser = await User.create({ ...req.body, password: hashPassword });
+  const newUser = await createUser({ ...req.body, password: hashPassword });
+  const token = await createToken({ id: newUser._id });
+  const updateById = await updateUserById(newUser._id, { token });
   res.status(201).json({
-    email: newUser.email,
-    name: newUser.name,
-    surname: newUser.surname,
-    phone: newUser.phone
+    email: updateById.email,
+    name: updateById.name,
+    surname: updateById.surname,
+    phone: updateById.phone,
+    token: updateById.token,
   });
 };
 

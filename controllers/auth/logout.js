@@ -1,8 +1,9 @@
-const User = require("../../models/authModels/user");
+const { updateUserById } = require("../../services/userServices");
 
 const logout = async (req, res) => {
   const { _id } = req.user;
-  await User.findByIdAndUpdate(_id, { token: "" });
+  await updateUserById(_id, { token: "" });
+
   res.json({ message: "logout success" });
 };
 

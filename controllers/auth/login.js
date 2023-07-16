@@ -1,9 +1,8 @@
 const { HttpError } = require("../../helpers");
 const User = require("../../models/authModels/user");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const { createToken, updateUserById } = require("../../services/userServices");
 require("dotenv").config();
-const { SECRET_KEY } = process.env;
 const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -16,12 +15,8 @@ const login = async (req, res) => {
     throw HttpError(401, "Email of password invalid");
   }
 
-  const payload = {
-    id: user._id,
-  };
-  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
-
-  await User.findByIdAndUpdate(user._id, {token})
+  const token = await createToken({ id: user._id });
+  await updateUserById(user._id, { token });
   res.json({ token });
 };
 
