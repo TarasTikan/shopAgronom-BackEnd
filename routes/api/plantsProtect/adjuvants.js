@@ -10,20 +10,18 @@ const {
 const {
   validateBody,
   isValidId,
-  authenticate,
 } = require("../../../middlewares");
 const { ProductJoiSchema } = require("../../../JoiSchemas");
 
-router.get("/", authenticate, getListProducts);
+router.get("/", getListProducts);
 
-router.get("/:productId", authenticate, isValidId, getOneProducts);
+router.get("/:productId", isValidId, getOneProducts);
 
-router.delete("/:productId", authenticate, isValidId, removeProduct);
+router.delete("/:productId", isValidId, removeProduct);
 
-router.post("/", authenticate, validateBody(ProductJoiSchema), createProduct);
+router.post("/", validateBody(ProductJoiSchema), createProduct);
 router.put(
   "/:productId",
-  authenticate,
   isValidId,
   validateBody(ProductJoiSchema),
   updateProduct
