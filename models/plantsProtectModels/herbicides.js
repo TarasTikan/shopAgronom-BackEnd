@@ -23,4 +23,4 @@ herbicidesSchema.post("save", handleMongooseError);
 const Herbicides = model("herbicide", herbicidesSchema);
 
 module.exports = Herbicides;
-// треба сюда добавити joi схему
+

@@ -7,10 +7,7 @@ const {
   getListProducts,
   getOneProducts,
 } = require("../../../controllers/plantsProtect/herbicides");
-const {
-  validateBody,
-  isValidId,
-} = require("../../../middlewares");
+const { validateBody, isValidId } = require("../../../middlewares");
 const { ProductJoiSchema } = require("../../../JoiSchemas");
 
 router.get("/", getListProducts);
