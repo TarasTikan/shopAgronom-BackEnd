@@ -20,7 +20,7 @@ router.get("/:productId", authenticate, isValidId, getOneProducts);
 
 router.delete("/:productId", authenticate, isValidId, removeProduct);
 
-router.post("/", validateBody(ProductJoiSchema), createProduct);
+router.post("/", authenticate, validateBody(ProductJoiSchema), createProduct);
 router.put(
   "/:productId",
   authenticate,
