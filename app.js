@@ -13,6 +13,7 @@ const {
 } = require("./routes/api/plantsProtect");
 const authRouter = require("./routes/api/auth/auth");
 const basketProductsRouter = require("./routes/api/basketsProduct/basketProducts");
+const { chickenRouter, quailRouter, rabbitRouter, fishRouter, turkeyRouter, waterfowlRouter, cattleRouter, pigRouter } = require("./routes/api/feedGroup");
 require("dotenv").config();
 const app = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -29,6 +30,15 @@ app.use("/api/plantsProtect/insecticides", insecticidesRouter);
 app.use("/api/plantsProtect/retardants", retardantsRouter);
 app.use("/api/plantsProtect/rodenticides", rodenticidesRouter);
 app.use("/api/plantsProtect/stainRemovers", stainRemoversRouter);
+
+app.use("/api/feedGroup/chickens", chickenRouter);
+app.use("/api/feedGroup/quails", quailRouter);
+app.use("/api/feedGroup/rabbits", rabbitRouter);
+app.use("/api/feedGroup/fishs", fishRouter);
+app.use("/api/feedGroup/turkeys", turkeyRouter);
+app.use("/api/feedGroup/waterfowls", waterfowlRouter);
+app.use("/api/feedGroup/cattles", cattleRouter);
+app.use("/api/feedGroup/pigs", pigRouter);
 
 app.use("/api/basketProducts", basketProductsRouter);
 
