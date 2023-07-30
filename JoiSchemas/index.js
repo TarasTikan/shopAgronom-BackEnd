@@ -1,3 +1,15 @@
-const ProductJoiSchema = require("./products");
+const {
+  ProductJoiSchemaBasket,
+  ProductJoiSchemaFertilizers,
+  ProductJoiSchemaFeedGroup,
+  ProductJoiSchemaPlantsProtect,
+} = require("./products");
 const { registerJoiSchema, loginJoiSchema } = require("./auth");
-module.exports = { ProductJoiSchema, registerJoiSchema, loginJoiSchema };
+module.exports = {
+  registerJoiSchema,
+  loginJoiSchema,
+  ProductJoiSchemaBasket,
+  ProductJoiSchemaFertilizers,
+  ProductJoiSchemaFeedGroup,
+  ProductJoiSchemaPlantsProtect,
+};

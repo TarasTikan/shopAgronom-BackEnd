@@ -7,11 +7,11 @@ const cattleProductSchema = new Schema(
     description: { type: String, required: true },
     producer: { type: String, required: true },
     number: { type: String, required: true },
-    TargetGroup: { type: String, required: true },
-    Type: { type: String, required: true },
-    Storage: { type: String, required: true },
-    Packaging: { type: String, required: true },
-    Characteristics: { type: String, required: true },
+    targetGroup: { type: String, required: true },
+    type: { type: String, required: true },
+    storage: { type: String, required: true },
+    packaging: { type: String, required: true },
+    characteristics: { type: String, required: true },
   },
   { versionKey: false, timestamps: true }
 );

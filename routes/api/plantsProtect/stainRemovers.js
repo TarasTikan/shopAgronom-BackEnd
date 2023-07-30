@@ -11,7 +11,7 @@ const {
   validateBody,
   isValidId,
 } = require("../../../middlewares");
-const { ProductJoiSchema } = require("../../../JoiSchemas");
+const { ProductJoiSchemaPlantsProtect } = require("../../../JoiSchemas");
 
 router.get("/", getListProducts);
 
@@ -19,12 +19,12 @@ router.get("/:productId", isValidId, getOneProducts);
 
 router.delete("/:productId", isValidId, removeProduct);
 
-router.post("/", validateBody(ProductJoiSchema), createProduct);
+router.post("/", validateBody(ProductJoiSchemaPlantsProtect), createProduct);
 
 router.put(
   "/:productId",
   isValidId,
-  validateBody(ProductJoiSchema),
+  validateBody(ProductJoiSchemaPlantsProtect),
   updateProduct
 );
 

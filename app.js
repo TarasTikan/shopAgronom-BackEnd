@@ -14,6 +14,7 @@ const {
 const authRouter = require("./routes/api/auth/auth");
 const basketProductsRouter = require("./routes/api/basketsProduct/basketProducts");
 const { chickenRouter, quailRouter, rabbitRouter, fishRouter, turkeyRouter, waterfowlRouter, cattleRouter, pigRouter } = require("./routes/api/feedGroup");
+const { complexRouter, organicRouter, microFertilizersRouter } = require("./routes/api/fertilizers");
 require("dotenv").config();
 const app = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -39,6 +40,10 @@ app.use("/api/feedGroup/turkeys", turkeyRouter);
 app.use("/api/feedGroup/waterfowls", waterfowlRouter);
 app.use("/api/feedGroup/cattles", cattleRouter);
 app.use("/api/feedGroup/pigs", pigRouter);
+
+app.use("/api/fertilizers/complex", complexRouter);
+app.use("/api/fertilizers/organic", organicRouter);
+app.use("/api/fertilizers/microFertilizers", microFertilizersRouter);
 
 app.use("/api/basketProducts", basketProductsRouter);
 

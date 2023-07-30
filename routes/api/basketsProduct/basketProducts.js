@@ -12,7 +12,7 @@ const {
   isValidId,
   authenticate,
 } = require("../../../middlewares");
-const { ProductJoiSchema } = require("../../../JoiSchemas");
+const { ProductJoiSchemaBasket } = require("../../../JoiSchemas");
 
 router.get("/", authenticate, getListProducts);
 
@@ -20,12 +20,17 @@ router.get("/:productId", authenticate, isValidId, getOneProducts);
 
 router.delete("/:productId", authenticate, isValidId, removeProduct);
 
-router.post("/", authenticate, validateBody(ProductJoiSchema), createProduct);
+router.post(
+  "/",
+  authenticate,
+  validateBody(ProductJoiSchemaBasket),
+  createProduct
+);
 router.put(
   "/:productId",
   authenticate,
   isValidId,
-  validateBody(ProductJoiSchema),
+  validateBody(ProductJoiSchemaBasket),
   updateProduct
 );
 module.exports = router;

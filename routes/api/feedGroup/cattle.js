@@ -8,7 +8,7 @@ const {
   getOneProducts,
 } = require("../../../controllers/feedGroup/forСattle");
 const { validateBody, isValidId } = require("../../../middlewares");
-const { ProductJoiSchema } = require("../../../JoiSchemas");
+const { ProductJoiSchemaFeedGroup } = require("../../../JoiSchemas");
 
 router.get("/", getListProducts);
 
@@ -16,11 +16,11 @@ router.get("/:productId", isValidId, getOneProducts);
 
 router.delete("/:productId", isValidId, removeProduct);
 
-router.post("/", validateBody(ProductJoiSchema), createProduct);
+router.post("/", validateBody(ProductJoiSchemaFeedGroup), createProduct);
 router.put(
   "/:productId",
   isValidId,
-  validateBody(ProductJoiSchema),
+  validateBody(ProductJoiSchemaFeedGroup),
   updateProduct
 );
 
