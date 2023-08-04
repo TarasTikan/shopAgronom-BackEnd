@@ -7,7 +7,7 @@ const basketProductsSchema = new Schema(
     description: { type: String, required: true },
     producer: { type: String, required: true },
     number: { type: String, required: true },
-    сharacteristics: { type: String, required: true },
+    characteristics: { type: String, required: true },
     culture: { type: String },
     activeSubstance: { type: String },
     preparativeForm: { type: String },
