@@ -20,6 +20,6 @@ const stainRemoversSchema = new Schema(
 );
 stainRemoversSchema.post("save", handleMongooseError);
 
-const StainRemovers = model("stainRemover", stainRemoversSchema);
+const StainRemovers = model("stainremover", stainRemoversSchema);
 
 module.exports = StainRemovers;
